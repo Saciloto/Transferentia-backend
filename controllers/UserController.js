@@ -12,8 +12,12 @@ module.exports = {
     },
 
     async store(req,res){
-        //const usuario = UserModel(req.body);
-        const {userName, email} = req.body
+        const {userName,name, email,senha} = req.body;
+        console.log(req.body);
+        const {filename} = req.file;
+        
+        console.log(req.file);
+        
         //const userExists = await User.findOne({name:username});
 
         //if(userExists){
@@ -33,7 +37,10 @@ module.exports = {
         }*/
         const usuario = await UserModel.create({
             userName,
-            email
+            name,
+            email,
+            senha,
+            userImagem:filename
        })
 
         return res.json(usuario)

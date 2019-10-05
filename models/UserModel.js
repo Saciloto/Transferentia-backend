@@ -3,21 +3,23 @@ const { Schema, model } = require('mongoose');
 const userSchema = new Schema({ //estrutura da tabelo da banco de dados para armazenar o desenvolvedor
     userName:{  //Nome de usuário
         type:String,
-       // required:true
+        //required:true
     },
-    /*name:{ //Nome completo
+    name:{ //Nome completo
         type: String,
-        required:true // obrigatório
-    
-    },*/
+        //required:true // obrigatório
+    },
     email:{ 
         type:String,
-       // required:true
+        //required:true
     },
-    //bio:String, //descrição
-   // avatar:String
+    senha:{
+        type:String,
+        //required:true
+    },
+    userImagem:String
 }, {
-  //  timestamps:true  //cria coluna automatica data de criação e data de ultima alteração
+    timestamps:true  //cria coluna automatica data de criação e data de ultima alteração
 })
 
 module.exports = model('User', userSchema);
