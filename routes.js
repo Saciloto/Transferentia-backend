@@ -18,6 +18,7 @@ routes.patch('/user/:id',UserController.update)
 {/* Rotas de Login */}
 
 routes.post('/login',LoginController.store);
+routes.get('/login',LoginController.index);//Rota pra DEV
 
 {/* Rotas para Aula */}
 routes.post('/aula',upload.single('userImagem'), AulaController.store);

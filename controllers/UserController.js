@@ -6,11 +6,12 @@ const path = require('path');
 //Por se tratar de um objeto pode ser exporta diretamente
 module.exports = {
     async index(req,res){
-        const users = await UserModel.find({});
-        try{
-            res.send(users);
-        }catch(err){
-            res.status(500).send(err)
+        const {user_id} = req.headers;
+        console.log(user_id)
+        const users = await UserModel.find({_id:user_id});
+        if(users){
+            console.log(users);
+            return res.json(users);
         }
     },
 
