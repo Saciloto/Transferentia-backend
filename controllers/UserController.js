@@ -1,5 +1,8 @@
 const axios = require('axios');
 const UserModel = require('../models/UserModel');
+const sharp = require('sharp');
+const fs = require('fs');
+const path = require('path');
 //Por se tratar de um objeto pode ser exporta diretamente
 module.exports = {
     async index(req,res){
@@ -14,8 +17,13 @@ module.exports = {
     async store(req,res){
         const {userName,name, email,senha} = req.body;
         console.log(req.body);
-        const {filename} = req.file;
+        const {filename:userImagem} = req.file;
+        console.log(userImagem)
+        const [imageName]= userImagem.split('.');
+        const filename = `${imageName}.jpg`;
+
         
+
         console.log(req.file);
         
         //const userExists = await User.findOne({name:username});

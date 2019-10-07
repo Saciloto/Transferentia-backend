@@ -3,7 +3,7 @@
 const express = require('express');
 const mongoose = require('mongoose');//ODM ferramenta que trabalha com banco de dados usando apenas javascript
 const cors = require('cors');
-
+const path = require('path');
 const routes = require('./routes');
 
 const app = express();
@@ -27,7 +27,7 @@ mongoose.connect('mongodb+srv://admin:admin@cluster0-1y2pg.mongodb.net/transfere
 })
 
 app.use(cors());
-app.use('/uploads',express.static('uploads'));
+app.use('/files', express.static(path.resolve(__dirname,'uploads','resized')));
 app.use(express.json({limit:'50mb'}));
 app.use(routes)
 
