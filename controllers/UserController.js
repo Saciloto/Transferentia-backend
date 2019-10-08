@@ -13,7 +13,7 @@ module.exports = {
         const user = await UserModel.find({_id:user_id});
         if(user){
             console.log(user);
-            return res.json(user,{porta:porta});
+            return res.json(user,porta);
         }
     },
 
