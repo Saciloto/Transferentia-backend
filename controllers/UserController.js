@@ -1,19 +1,15 @@
 const axios = require('axios');
 const UserModel = require('../models/UserModel');
-const sharp = require('sharp');
-const fs = require('fs');
-const path = require('path');
-//Por se tratar de um objeto pode ser exporta diretamente
+
+//Por se tratar de um objeto pode ser exportado diretamente
 module.exports = {
     async index(req,res){
-        var porta = (process.env.PORT || 3333)
         const {user_id} = req.headers;
-        console.log(porta)
         console.log(user_id)
         const user = await UserModel.find({_id:user_id});
         if(user){
             console.log(user);
-            return res.json({'user': user,'porta':porta});
+            return res.json({'user': user});
         }
     },
 
@@ -38,11 +34,6 @@ module.exports = {
     
             return res.json(usuario)
         }
-
-        //const response = await axios.get('http://localhost:3333/user')//`https://api.github.com/users/${username}`) // Busca os dados na API do gitHub ALTERAR PAR MINHA VIEW
-
-        //const dados = response.data
-        
     },
 
     async delete(req,res){
