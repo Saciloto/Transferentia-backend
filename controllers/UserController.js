@@ -6,7 +6,7 @@ const path = require('path');
 //Por se tratar de um objeto pode ser exporta diretamente
 module.exports = {
     async index(req,res){
-        //var porta = (process.env.PORT || 3333)
+        var porta = (process.env.PORT || 3333)
         const {user_id} = req.headers;
         console.log(porta)
         console.log(user_id)
