@@ -6,12 +6,13 @@ const path = require('path');
 //Por se tratar de um objeto pode ser exporta diretamente
 module.exports = {
     async index(req,res){
+        var porta = (process.env.PORT || 3333)
         const {user_id} = req.headers;
         console.log(user_id)
-        const users = await UserModel.find({_id:user_id});
-        if(users){
-            console.log(users);
-            return res.json(users);
+        const user = await UserModel.find({_id:user_id});
+        if(user){
+            console.log(user);
+            return res.json(user,{porta:porta});
         }
     },
 

@@ -30,8 +30,6 @@ app.use(cors());
 app.use('/files', express.static(path.resolve(__dirname,'uploads','resized')));
 app.use(express.json({limit:'50mb'}));
 app.use(routes)
-
-server.listen(process.env.PORT || 3333)
+var porta = (process.env.PORT || 3333)
+server.listen(porta)
 //server.listen(3333)
-
-
