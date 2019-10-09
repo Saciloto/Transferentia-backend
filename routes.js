@@ -21,7 +21,7 @@ routes.post('/login',LoginController.store);
 routes.get('/login',LoginController.index);//Rota pra DEV
 
 {/* Rotas para Aula */}
-routes.post('/aula',upload.single('userImagem'), AulaController.store);
+routes.post('/aula',upload.single('aulaImagem'), AulaController.store);
 routes.get('/aula', AulaController.index);
 
 module.exports = routes;

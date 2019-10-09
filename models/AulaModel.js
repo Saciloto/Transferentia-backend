@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const AulaSchema = new mongoose.Schema({
-    imagem: String,
+    aulaImagem: String,
     titulo:String,
     descricao:String,
     data:String,
