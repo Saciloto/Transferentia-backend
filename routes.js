@@ -4,6 +4,7 @@ const uploadConfig = require('./config/upload');
 const UserController = require('./controllers/UserController');
 const AulaController = require('./controllers/AulaController');
 const LoginController = require('./controllers/LoginController');
+const AlunoController = require('./controllers/AlunoController');
 
 
 const routes = express.Router();
@@ -23,5 +24,9 @@ routes.get('/login',LoginController.index);//Rota pra DEV
 {/* Rotas para Aula */}
 routes.post('/aula',upload.single('aulaImagem'), AulaController.store);
 routes.get('/aula', AulaController.index);
+
+{/* Rotas para Aluno */}
+routes.get('/aluno', AlunoController.index);
+
 
 module.exports = routes;
