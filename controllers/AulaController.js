@@ -45,11 +45,10 @@ module.exports = {
         // idDaAula.alunos.push({user_id})
         // idDaAula.save()
         
-        await AulaModel.findById(aula_id, function (err, doc) {
-            doc.alunos.push({user_id});
-            doc.save();
-          });
-    
+        // await AulaModel.findById(aula_id, function (err, doc) {
+        //     doc.alunos.push({user_id});
+        //     doc.save();
+        //   });
     }
 
 }
