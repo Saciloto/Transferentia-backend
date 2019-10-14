@@ -8,9 +8,11 @@ module.exports={
      const {user_id} = req.headers;
      console.log(user_id)
      const aula = await AulaModel.find({professor:user_id});
-     if(aula.length > 0){
+     const {professor} = aula;
+
+     if(professor === user_id){
          console.log(aula);
-         return res.json({'aula': aula});
+         return res.json({aula});
      }else{
          return res.json({message:'Você não criou nenhuma aula, vire uns intrutor agora mesmo!'})
         }
