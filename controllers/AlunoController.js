@@ -5,11 +5,15 @@ module.exports={
 
     async index(req,res){
     //Retorna o número de aulas que um instrutor já criou, ou retorna uma mensagem caso não tenha
-     const {user_id} = req.headers;
+   // const aulas = [] 
+    const {user_id} = req.headers;
      console.log(user_id)
-     const aula = await AulaModel.findById({professor:user_id});
-     const {professor} = aula;
-
+     const aula = await AulaModel.find({professor:user_id});
+     //const {professor} = aula;
+    
+    //  if(professor === user_id){
+    //     aulas = [aula]
+    // }
      if(aula.length > 0){
          console.log(aula);
          return res.json({'aula': aula});
