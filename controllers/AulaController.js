@@ -35,5 +35,21 @@ module.exports = {
         }catch(err){
             res.send(err)
         }
+    },
+
+    async update(req,res){
+        const {user_id,aula_id} = req.body;
+        console.log(user_id,aula_id)
+        //const idDaAula = await AulaModel.findOne({_id:aula_id});
+        // console.log(idDaAula)
+        // idDaAula.alunos.push({user_id})
+        // idDaAula.save()
+        
+        await AulaModel.findById(aula_id, function (err, doc) {
+            doc.alunos.push({user_id});
+            doc.save();
+          });
+    
     }
+
 }

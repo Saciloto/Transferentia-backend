@@ -24,6 +24,8 @@ routes.get('/login',LoginController.index);//Rota pra DEV
 {/* Rotas para Aula */}
 routes.post('/aula',upload.single('aulaImagem'), AulaController.store);
 routes.get('/aula', AulaController.index);
+routes.patch('/aula', AulaController.update);
+
 
 {/* Rotas para Aluno */}
 routes.get('/aluno', AlunoController.index);
