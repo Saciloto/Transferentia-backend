@@ -40,15 +40,19 @@ module.exports = {
     async update(req,res){
         const {user_id,aula_id} = req.body;
         console.log(user_id,aula_id)
-        //const idDaAula = await AulaModel.findOne({_id:aula_id});
-        // console.log(idDaAula)
-        // idDaAula.alunos.push({user_id})
-        // idDaAula.save()
+        const aula = await AulaModel.findById({_id:aula_id});
         
-        await AulaModel.findByIdAndUpdate(aula_id, function (err, doc) {
-            doc.alunos.push({user_id});
-            doc.save();
-          });
-    }
+        const {professor} = aula;
 
+        console.log({user_id,professor})
+        if (user_id != professor){
+            aula.alunos.push(user_id)
+            console.log("Cadastrado")
+            await aula.save();
+            return res.json({message:'Cadastro realizado com sucesso!'})
+        }else{
+            console.log('Você não pode se inscrever na sua aula!')
+            return res.json({message:'Você não pode se inscrever em sua própria aula!'})
+        }
+    }
 }
