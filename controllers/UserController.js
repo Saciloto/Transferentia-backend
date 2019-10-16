@@ -18,7 +18,7 @@ module.exports = {
         const {filename:userImagem} = req.file;
         const [imageName]= userImagem.split('.');
         const filename = `${imageName}.jpg`;
-        const userExists = await UserModel.findOne({name:userName}|| {email:email} );
+        const userExists = await UserModel.find({name:userName}|| {email:email} );
 
         if(userExists){
             console.log("Nome de usuário já existe")
