@@ -5,6 +5,7 @@ const UserController = require('./controllers/UserController');
 const AulaController = require('./controllers/AulaController');
 const LoginController = require('./controllers/LoginController');
 const AlunoController = require('./controllers/AlunoController');
+const ProfessorController = require('./controllers/ProfessorController');
 
 
 const routes = express.Router();
@@ -29,6 +30,7 @@ routes.patch('/aula', AulaController.update);
 
 {/* Rotas para Aluno */}
 routes.get('/aluno', AlunoController.index);
+routes.get('/professor',ProfessorController.index);
 
 
 module.exports = routes;
