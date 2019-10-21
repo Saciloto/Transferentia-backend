@@ -1,10 +1,6 @@
 const { Schema, model } = require('mongoose');
 
 const userSchema = new Schema({ //estrutura da tabelo da banco de dados para armazenar o desenvolvedor
-    userName:{  //Nome de usuário
-        type:String,
-        required:true
-    },
     name:{ //Nome completo
         type: String,
         required:true // obrigatório
@@ -14,6 +10,10 @@ const userSchema = new Schema({ //estrutura da tabelo da banco de dados para arm
         required:true
     },
     senha:{
+        type:String,
+        required:true
+    },
+    celular:{
         type:String,
         required:true
     },

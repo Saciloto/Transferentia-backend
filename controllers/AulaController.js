@@ -1,5 +1,9 @@
 const AulaModel = require('../models/AulaModel');
 const UserModel = require('../models/UserModel');
+const sharp = require('sharp');
+const path = require('path');
+const fs = require('fs')
+
 
 module.exports = {
     async store(req,res){
@@ -7,12 +11,14 @@ module.exports = {
         const {filename:aulaImagem} = req.file;
         const [imageName]= aulaImagem.split('.');
         const filename = `${imageName}.jpg`;
-        /*const jaExiste = await AulaModel.find({professor_id})
-
-        if (jaExiste){
-            console.log('Já existe essa aula magrão', professor_id)
-            return res.json(jaExiste)
-        }*/
+        
+        await sharp(req.file.path)
+                .resize(500)
+                .jpeg({quality:70})
+                .toFile(
+                    path.resolve(req.file.destination,'..',filename)
+                )
+        fs.unlinkSync(req.file.path);
 
         const aula = await AulaModel.create({
             professor,

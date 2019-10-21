@@ -3,16 +3,17 @@ const UserModel = require('../models/UserModel');
 module.exports={
 
     async index(req,res){
-    //Retorna o número de aulas que um instrutor já criou, ou retorna uma mensagem caso não tenha
+    //Retorna o número de aulas que o usuaário está inscrito
     const {user_id} = req.headers;
-        console.log(user_id)
-        const aula = await AulaModel.find({professor:user_id});
+        //console.log(user_id)
+        const aula = await AulaModel.find({alunos:user_id});
         
         if(aula.length > 0){
             console.log(aula);
             return res.json({'aula': aula});
         }else{
-            return res.json({message:'Você não criou nenhuma aula, vire uns intrutor agora mesmo!'})
+            console.log('sem aula')
+            return res.json({message:'Você não está em nenhuma aula, inscreva-se agora mesmo!'})
         }
     }
 }

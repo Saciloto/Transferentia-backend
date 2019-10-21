@@ -1,5 +1,7 @@
-const axios = require('axios');
 const UserModel = require('../models/UserModel');
+const sharp = require('sharp');
+const path = require('path');
+const fs = require('fs')
 
 //Por se tratar de um objeto pode ser exportado diretamente
 module.exports = {
@@ -14,21 +16,30 @@ module.exports = {
     },
 
     async store(req,res){
-        const {userName,name, email,senha} = req.body;
+        const {celular,name, email,senha} = req.body;
         const {filename:userImagem} = req.file;
         const [imageName]= userImagem.split('.');
         const filename = `${imageName}.jpg`;
-        const userExists = await UserModel.findOne({name:userName}|| {email:email} );
+
+        await sharp(req.file.path)
+                .resize(500)
+                .jpeg({quality:70})
+                .toFile(
+                    path.resolve(req.file.destination,'..',filename)
+                )
+        fs.unlinkSync(req.file.path);
+
+        const userExists = await UserModel.findOne({celular:celular}|| {email:email} );
 
         if(userExists){
-            console.log("Nome de usuário já existe")
-            return res.json({message:'Nome de Usuário e/ou email já cadastrado, por favor insira novos dados'}) // Se encontrar um usuário que já existe ele retorna o mesmo
+            console.log("Celular já existe")
+            return res.json({message:'Celular e/ou email já cadastrado, por favor insira novos dados'}) // Se encontrar um usuário que já existe ele retorna o mesmo
         }else{
             const usuario = await UserModel.create({
-                userName,
                 name,
                 email,
                 senha,
+                celular,
                 userImagem:filename
            })
             console.log(usuario);
