@@ -14,6 +14,8 @@ const AulaSchema = new mongoose.Schema({
         {type: mongoose.Schema.Types.ObjectId, // Grava a referencia do aluno que se inscreveu na aula
         ref:'User'},
     ]
+},{
+    timestamps:true
 });
 
 module.exports = mongoose.model('Aula',AulaSchema);

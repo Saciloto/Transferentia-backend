@@ -2,6 +2,7 @@ const UserModel = require('../models/UserModel');
 const sharp = require('sharp');
 const path = require('path');
 const fs = require('fs')
+const bcrypt = require('bcrypt')
 
 //Por se tratar de um objeto pode ser exportado diretamente
 module.exports = {
@@ -31,6 +32,8 @@ module.exports = {
 
         const userExists = await UserModel.findOne({celular:celular}|| {email:email} );
 
+        let hash = bcrypt.hashSync(senha,10);
+
         if(userExists){
             console.log("Celular já existe")
             return res.json({message:'Celular e/ou email já cadastrado, por favor insira novos dados'}) // Se encontrar um usuário que já existe ele retorna o mesmo
@@ -38,7 +41,7 @@ module.exports = {
             const usuario = await UserModel.create({
                 name,
                 email,
-                senha,
+                senha:hash,
                 celular,
                 userImagem:filename
            })
