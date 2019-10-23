@@ -10,20 +10,26 @@ const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 
-io.on('connection',socket =>{
-    console.log('NOVA COnexão', socket.id);
-
-    //const {user} = socket.handshake.query;
-    //connectedUsers[user] = socket.id;
-    //console.log(user, socket.id)
-    socket.on('hello',message =>{
-        console.log(message)
-    })
-})
-
 mongoose.connect('mongodb+srv://admin:admin@cluster0-1y2pg.mongodb.net/transferentia?retryWrites=true&w=majority',{
     useUnifiedTopology:true,
     useNewUrlParser:true,
+})
+
+const connectedUsers = {};
+
+io.on('connection',socket =>{
+    console.log('Nova Conexão', socket.id);
+    console.log(socket.handshake.query); 
+
+    const {user_id} = socket.handshake.query;
+
+    connectedUsers[user_id] = socket.id;
+});
+
+app.use((req,res,next) =>{  // Disponibiliza para todas as rotas da aplicação acesso aos dados do io atráves do req.io
+    req.io = io;   
+    req.connectedUsers = connectedUsers;
+    return next();
 })
 
 app.use(cors());
