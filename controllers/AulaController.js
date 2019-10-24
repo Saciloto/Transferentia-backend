@@ -7,7 +7,7 @@ const fs = require('fs')
 
 module.exports = {
     async store(req,res){
-        const {titulo,descricao,data,preco,professor} = req.body;
+        const {titulo,descricao,materiais,data,preco,professor} = req.body;
         const {filename:aulaImagem} = req.file;
         const [imageName]= aulaImagem.split('.');
         const filename = `${imageName}.jpg`;
@@ -25,6 +25,7 @@ module.exports = {
             aulaImagem:filename,
             titulo,
             descricao,
+            materiais,
             data,
             preco,
         })

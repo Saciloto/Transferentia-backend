@@ -4,6 +4,7 @@ const AulaSchema = new mongoose.Schema({
     aulaImagem: String,
     titulo:String,
     descricao:String,
+    materiais:String,
     data:String,
     preco:Number,
     professor:{
