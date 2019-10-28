@@ -59,7 +59,7 @@ module.exports = {
             return res.json({message:'Cadastro realizado com sucesso!'})
         }else{
             console.log('Você não pode se inscrever na sua aula!')
-            return res.json({message:'Você não pode se inscrever em sua própria aula!'})
+            return res.json({badMessage:'Você não pode se inscrever em sua própria aula!'})
         }
     }
 }
