@@ -56,7 +56,7 @@ module.exports = {
             aula.alunos.push(user_id)
             console.log("Cadastrado")
             await aula.save();
-            return res.json({message:'Cadastro realizado com sucesso!'})
+            return res.json({message:'Agora só aguardar o instrutor entrar em contato, e aprender!'})
         }else{
             console.log('Você não pode se inscrever na sua aula!')
             return res.json({badMessage:'Você não pode se inscrever em sua própria aula!'})
