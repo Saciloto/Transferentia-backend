@@ -1,5 +1,4 @@
 const AulaModel = require('../models/AulaModel');
-const UserModel = require('../models/UserModel');
 const sharp = require('sharp');
 const path = require('path');
 const fs = require('fs')
@@ -60,6 +59,16 @@ module.exports = {
         }else{
             console.log('Você não pode se inscrever na sua aula!')
             return res.json({badMessage:'Você não pode se inscrever em sua própria aula!'})
+        }
+    },
+
+    async delete(req,res){
+        const aula = await AulaModel.findByIdAndDelete(req.params.id)
+        console.log('Aula para excluir',req.params.id)
+        if (!aula){
+            res.status(404).send("No Item Found")
+        }else{
+            res.json({message:'Intrução excluída com sucesso!'})
         }
     }
 }

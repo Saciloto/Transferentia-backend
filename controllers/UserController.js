@@ -17,7 +17,7 @@ module.exports = {
     },
 
     async store(req,res){
-        const {celular,name, email,senha} = req.body;
+        const {celular,name, email,senha,bio} = req.body;
         const {filename:userImagem} = req.file;
         const [imageName]= userImagem.split('.');
         const filename = `${imageName}.jpg`;
@@ -40,6 +40,7 @@ module.exports = {
         }else{
             const usuario = await UserModel.create({
                 name,
+                bio,
                 email,
                 senha:hash,
                 celular,
