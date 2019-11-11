@@ -35,7 +35,7 @@ module.exports = {
 
     async index(req,res){
         
-        const aulas = await AulaModel.find({});
+        const aulas = await AulaModel.find({}).sort('-createdAt');
         try{
             res.send(aulas);
         }catch(err){
