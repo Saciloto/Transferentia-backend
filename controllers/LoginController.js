@@ -17,12 +17,12 @@ module.exports = {
                 return res.json(userExists);
             }else{
                 console.log('Senhas não conferem')
-                return res.json({message:'E-mail ou senha incorretos, insira novos dados, ou crie sua conta gratuita.'}) 
+                return res.json({message:'E-mail ou senha incorretos, insira novos dados, ou crie sua conta!'}) 
             }
             
         }else{
             console.log("Dados incorretos")
-            return res.json({message:'E-mail ou senha incorretos, insira novos dados, ou crie sua conta gratuita.'}) 
+            return res.json({message:'E-mail ou senha incorretos, insira novos dados, ou crie sua conta!'}) 
         }
     },
     async index(req,res){ //Função para buscar todos os usuários - só pra DEV

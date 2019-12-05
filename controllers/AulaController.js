@@ -13,7 +13,7 @@ module.exports = {
         
         await sharp(req.file.path)
                 .resize(500)
-                //.jpeg({quality:70})
+                .jpeg({quality:70})
                 .toFile(
                     path.resolve(req.file.destination,'..',filename)
                 )
@@ -28,7 +28,7 @@ module.exports = {
             data,
             preco,
         })
-        console.log(aula)
+        console.log('Aula cadastrada = ',aula)
         return res.json(aula);
         
     },
@@ -68,7 +68,7 @@ module.exports = {
         if (!aula){
             res.status(404).send("No Item Found")
         }else{
-            res.json({message:'Intrução excluída com sucesso!'})
+            res.json({message:'Instrução excluída com sucesso!'})
         }
     }
 }

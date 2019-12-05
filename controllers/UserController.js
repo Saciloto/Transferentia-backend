@@ -23,8 +23,8 @@ module.exports = {
         const filename = `${imageName}.jpg`;
 
         await sharp(req.file.path)
-                .resize(500)
-                .jpeg({quality:70})
+                .resize(600)
+                .jpeg({quality:50})
                 .toFile(
                     path.resolve(req.file.destination,'..',filename)
                 )
@@ -46,7 +46,7 @@ module.exports = {
                 celular,
                 userImagem:filename
            })
-            console.log(usuario);
+            console.log('Usuário cadastrado = ',usuario);
             return res.json(usuario);
         }
     },
